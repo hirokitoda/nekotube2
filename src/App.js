@@ -2,18 +2,26 @@ import React, { Component } from 'react';
 import './App.css';
 import Header from './components/Header/Header'
 import Ysearch from 'youtube-api-search';
+import Body from './components/Body/Body';
+import List from './components/Video/List/List';
 
 const YOUTUBE_API_KEY = 'AIzaSyAypMwkSgPExT_Sm1e6ckqlgG8GqysFxkY'
 
-Ysearch({key: YOUTUBE_API_KEY, term: '猫　きゅうり'}, (data) => {
-  console.log(data);
-});
-
 class App extends Component {
+
+state = { videos: [] }
+
+
+componentDidMount(){
+  Ysearch({key: YOUTUBE_API_KEY,term:'猫　きゅうり'}, (data) => {this.setState({videos:data});
+  });
+}
+
   render() {
     return (
       <div className="App">
         <Header />
+        <Body><List videos={this.state.videos} /></Body>
       </div>
     );
   }
