@@ -2,22 +2,35 @@ import React, { Component } from 'react';
 
 class Header extends Component {
 
-  state = {keyword: ''}
+  state = {keyword: ''};
 
   onInputChangeHandler = (event) => {
     this.setState({keyword: event.target.value});
   }
 
   render(){
+
+    const fontStyle = {
+      fontFamily: 'Fredoka One',
+      fontFamily: 'Cabin Sketch'
+    }
+
     return(
-      <div style={{textAlign: 'center'}}>
-        <div>
-        <h2>NekoTube</h2>
-        </div>
-        <div>
-          <input onChange={this.onInputChangeHandler} value={this.state.keyword} />
-        </div>
-      </div>
+      <nav className="navbar navbar-expand
+                    navbar-light bg-light
+                    mb-3 p-3">
+        <h2 className="mb-0" >
+          <span className="bg-dark text-white p-2 mr-2">猫</span>
+          <span className="d-none d-md-inline"
+            style={fontStyle}
+          >NekoTube</span>
+        </h2>
+        <form className="form-group my-2 my-lg-0 ml-sm-2 ">
+          <input
+            onChange={this.onInputChangeHandler} value={this.state.keyword}
+            className="form-control form-control-lg mr-sm-2" type="text" placeholder="検索..." aria-label="検索..." />
+        </form>
+      </nav>
     );
   }
 }
